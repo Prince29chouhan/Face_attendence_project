@@ -1,64 +1,63 @@
-# Face Recognition Attendance System
+# Face Recognition System
 
-This project is a Face Recognition Attendance System that captures real-time video from a webcam, detects faces, and matches them with reference images to log attendance. The attendance is recorded in an Excel file with timestamps.
+This project demonstrates a Face Recognition System that compares faces from test images with a set of reference images, identifying the best match for each test face.
 
 ## Requirements
 
 - Python 3.6+
 - OpenCV
 - face_recognition
-- openpyxl
 - numpy
 
 ## Installation
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/Prince29chouhan/Face_attendence_project.git
-    cd face-recognition-attendance
+    git clone https://github.com/your-username/face-recognition-system.git
+    cd face-recognition-system
     ```
 
 2. **Install Required Libraries:**
     ```bash
-    pip install opencv-python face_recognition openpyxl numpy
+    pip install opencv-python face_recognition numpy
     ```
 
-3. **Prepare Reference Face Images:**
+3. **Prepare Reference and Test Face Images:**
     - Create a directory named `reference_faces`.
-    - Add reference images to this directory. Each image file should be named after the person in the image (e.g., `john_doe.jpg`).
+        - Inside `reference_faces`, create subdirectories for each person, with the subdirectory name being the person's name.
+        - Add reference images to the corresponding subdirectory.
+    - Create a directory named `test_faces`.
+        - Add test images to this directory.
 
 ## Usage
 
 1. **Running the Script:**
     ```bash
-    python face_recognition_attendance.py
+    python face_recognition.py
     ```
-    - The script initializes the webcam and starts capturing frames.
-    - It detects faces in each frame and compares them with the reference images.
-    - If a match is found, it logs the person's name and the current timestamp in an Excel file (`attendance.xlsx`).
 
-2. **Stopping the Capture:**
-    - Press the `q` key to stop the capture and exit the script.
+    - The script will load the reference and test images, perform face recognition, and print the best match for each test face image.
+
+## Example Usage
+**Here is an example output:**
+```bash
+Best match for test1.jpg: person1
+Best match for test2.jpg: person2
+Person not present in the reference dataset: test3.jpg
+```
 
 ## Project Overview
 
 ### Load Reference Face Images
 
-The script loads reference face images from the `reference_faces` directory and encodes them for comparison.
+The script loads reference face images from the `reference_faces` directory, with subdirectories for each person. It encodes these images for face recognition.
 
-### Initialize the Excel File
+### Load Test Face Images
 
-An Excel workbook is created to log attendance, with columns for names and timestamps.
+Test face images are loaded from the `test_faces` directory. Each test face is encoded and compared to the reference faces to find the best match.
 
-### Initialize the Camera and Capture Frames
+### Face Recognition
 
-The script captures frames from the webcam and processes them to detect and recognize faces.
-
-### Save Attendance Data
-
-Matched faces are logged in an Excel file with the current timestamp.
-
-
-
+The script uses the `face_recognition` library to calculate the distances between the test face encoding and the reference face encodings. It identifies the best match based on the smallest distance, provided it is below a specified threshold.
 
 
